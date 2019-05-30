@@ -12,14 +12,14 @@ import org.testng.annotations.Test;
 
 import com.training.generics.ScreenShot;
 import com.training.pom.LoginPOM;
+import com.training.pom.LoginPOM_ELTC_002;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class LoginTests {
-
+public class LoginTest_ELTC_002 {
 	private WebDriver driver;
 	private String baseUrl;
-	private LoginPOM loginPOM;
+	private LoginPOM_ELTC_002 loginPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 
@@ -30,38 +30,26 @@ public class LoginTests {
 		properties.load(inStream);
 	}
 
-	/*@BeforeMethod
-		public void setUp() throws Exception {
-		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		loginPOM = new LoginPOM(driver); 
-		baseUrl = properties.getProperty("baseURL");
-		screenShot = new ScreenShot(driver); 
-		// open the browser 
-		driver.get(baseUrl);
-	}*/
-	//added below code for FIREFOX driver
 	@BeforeMethod
 	public void setUp() throws Exception {
 	driver = DriverFactory.getDriver(DriverNames.FIREFOX);
-	loginPOM = new LoginPOM(driver); 
+	loginPOM = new LoginPOM_ELTC_002(driver); 
 	baseUrl = properties.getProperty("baseURL");
 	screenShot = new ScreenShot(driver); 
 	// open the browser 
 	driver.get(baseUrl);
-}
-	
-	
+	}
 	
 	@AfterMethod
 	public void tearDown() throws Exception {
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		driver.quit();
 	}
 	@Test
 	public void validLoginTest() {
-		loginPOM.sendUserName("admin");
-		loginPOM.sendPassword("admin@123");
+		loginPOM.sendUserName("Jayasankar");
+		loginPOM.sendPassword("sankar123");
 		loginPOM.clickLoginBtn(); 
-		screenShot.captureScreenShot("First");
+		screenShot.captureScreenShot("ELTC_002");
 	}
 }

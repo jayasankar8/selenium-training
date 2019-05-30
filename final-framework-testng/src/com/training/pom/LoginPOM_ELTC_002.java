@@ -4,11 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
 
-public class LoginPOM {
-	private WebDriver driver; 
+public class LoginPOM_ELTC_002 {
+ 
+private WebDriver driver; 
 	
-	public LoginPOM(WebDriver driver) {
+	public LoginPOM_ELTC_002(WebDriver driver) {
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}
@@ -19,7 +21,7 @@ public class LoginPOM {
 	@FindBy(id="password")
 	private WebElement password;
 	
-	@FindBy(id="formLogin_submitAuth")
+	@FindBy(id="form-login_submitAuth")
 	private WebElement loginBtn; 
 	
 	public void sendUserName(String userName) {
@@ -35,7 +37,5 @@ public class LoginPOM {
 	public void clickLoginBtn() {
 		this.loginBtn.click(); 
 	}
-	
-	
 	
 }

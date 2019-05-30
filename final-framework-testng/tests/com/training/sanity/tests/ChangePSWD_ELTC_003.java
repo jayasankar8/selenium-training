@@ -11,15 +11,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.training.generics.ScreenShot;
-import com.training.pom.LoginPOM;
+import com.training.pom.ChangePSWD_POM_ELTC_003;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class LoginTests {
-
+public class ChangePSWD_ELTC_003 {
+ 
 	private WebDriver driver;
 	private String baseUrl;
-	private LoginPOM loginPOM;
+	private ChangePSWD_POM_ELTC_003 loginPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 
@@ -30,38 +30,32 @@ public class LoginTests {
 		properties.load(inStream);
 	}
 
-	/*@BeforeMethod
-		public void setUp() throws Exception {
-		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		loginPOM = new LoginPOM(driver); 
-		baseUrl = properties.getProperty("baseURL");
-		screenShot = new ScreenShot(driver); 
-		// open the browser 
-		driver.get(baseUrl);
-	}*/
-	//added below code for FIREFOX driver
 	@BeforeMethod
 	public void setUp() throws Exception {
 	driver = DriverFactory.getDriver(DriverNames.FIREFOX);
-	loginPOM = new LoginPOM(driver); 
+	loginPOM = new ChangePSWD_POM_ELTC_003(driver); 
 	baseUrl = properties.getProperty("baseURL");
 	screenShot = new ScreenShot(driver); 
 	// open the browser 
 	driver.get(baseUrl);
-}
-	
-	
+	}
 	
 	@AfterMethod
 	public void tearDown() throws Exception {
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		driver.quit();
 	}
 	@Test
 	public void validLoginTest() {
-		loginPOM.sendUserName("admin");
-		loginPOM.sendPassword("admin@123");
+		loginPOM.sendUserName("Jayasankar");
+		loginPOM.sendPassword("123sankar");
 		loginPOM.clickLoginBtn(); 
-		screenShot.captureScreenShot("First");
+		loginPOM.clickEditProfile();
+		loginPOM.sendExistingPassword("123sankar");
+		loginPOM.sendNewPassword("sankar123");
+		loginPOM.sendConfirmPassword("sankar123");
+		loginPOM.clickSaveBtn();
+		screenShot.captureScreenShot("ELTC_003");
 	}
+	
 }
